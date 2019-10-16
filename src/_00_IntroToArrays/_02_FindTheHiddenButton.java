@@ -33,7 +33,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//3.  Ask the user to enter a positive number and convert it to an int
-		String positiveInt= JOptionPane.showInputDialog("Enter a positive number.");
+		String positiveInt= JOptionPane.showInputDialog("Enter a positive number less than 640.");
 		int posInt= Integer.parseInt(positiveInt);
 		//4. Initialize the array of JButtons to be the size of the int created in step 3
 		ba=new JButton[posInt];
@@ -53,13 +53,13 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		//11. set the JFrame to visible.
 		window.setVisible(true);
 		//12. Give the user the instructions for the game.
-		JOptionPane.showMessageDialog(null, "Instructions: ");
+		JOptionPane.showMessageDialog(null, "Instructions: find the button with \"me!\" written on it");
 		//13. initialize the hiddenButton variable to a random number less than the int created in step 3
 		Random r= new Random();
 		
 		hiddenButton=r.nextInt(posInt);
 		//14. Set the text of the JButton located at hiddenButton to read "ME"
-		ba[hiddenButton].setText("me!");
+		ba[hiddenButton].setText("ME");
 		//15. Use Thread.sleep(100); to pause the program.
 		try {
 			Thread.sleep(100);
@@ -68,7 +68,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 			e.printStackTrace();
 		}
 		//16. Set the text of the JButton located at hiddenButton to be blank.
-		
+		ba[hiddenButton].setText("");
 	}
 
 	@Override
@@ -76,7 +76,11 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		JButton buttonClicked = (JButton)e.getSource();
 		
 		//17. if the hiddenButton is clicked, tell the user that they win.
-
+if(ba[hiddenButton]==e.getSource()) {
+	JOptionPane.showMessageDialog(null, "You win!");
+}else {
+	JOptionPane.showMessageDialog(null, "Try again...");
+}
 		//18. else tell them to try again
 	}
 }
